@@ -1,6 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { ICourse } from 'src/app/models/course.model';
-import { startLoadingCourse, loadCourse } from '../actions/course.action';
+import {
+  startLoadingCourse,
+  loadCourse,
+  getCourseDetail,
+} from '../actions/course.action';
 
 export const COURSE_REDUCER_NAME = 'course';
 // cours state
@@ -25,7 +29,13 @@ const _courseReducer = createReducer(
     ...state,
     loading: false,
     courses: payload,
-  }))
+  })),
+  on(
+    getCourseDetail,
+    (state, { payload }) => (
+      console.log(payload), { ...state, course: payload }
+    )
+  )
 );
 
 // export reducer

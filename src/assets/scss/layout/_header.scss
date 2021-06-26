@@ -23,10 +23,11 @@
   }
 
   &-public {
-    //background-color: $navbar-white-bg;
-    //box-shadow: $navbar-shadow;
   }
 
   &-admin {
+    padding: 5px 0;
+    background-color: $navbar-white-bg;
+    box-shadow: $navbar-shadow;
   }
 }

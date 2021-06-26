@@ -1,0 +1,19 @@
+<div class="title" *ngIf="type==='default'; else admin">
+  <h3>
+    {{title | capitalize}}
+    <small class="text-xs" *ngIf=""></small>
+  </h3>
+</div>
+
+<ng-template #admin>
+  <div class="page-title d-flex justify-content-between align-items-center">
+    <h4>{{(title ?title:urlTitles) | capitalize}}
+      <small class="text-xs">{{status?status:'Welcome to '
+        +
+        urlTitles}}</small>
+    </h4>
+    <div class="ms-auto">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-template>

@@ -9,7 +9,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAlert } from './models/alert.model';
 import { AppState } from './store';
-import { alertShow } from './store/actions/alert.action';
 
 @Component({
   selector: 'app-root',
@@ -53,10 +52,5 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
       }
     });
-  }
-
-  showAlert() {
-    console.log('hellos');
-    this.store.dispatch(alertShow({ payload: { message: 'i am visible' } }));
   }
 }

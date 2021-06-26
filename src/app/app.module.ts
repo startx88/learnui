@@ -13,6 +13,8 @@ import { AppRouterModule } from './app.router.module';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CoursesComponent } from './views/courses/courses.component';
+import { DetailComponent } from './views/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    CoursesComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,

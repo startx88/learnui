@@ -17,7 +17,7 @@ const initialState: IAlert = {
 // create reducer
 const _alertReducer = createReducer(
   initialState,
-  on(alertShow, (state, { payload }) => ({
+  on(alertShow, (state, payload) => ({
     ...state,
     visible: true,
     message: payload.message,

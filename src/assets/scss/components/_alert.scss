@@ -1,0 +1,23 @@
+.alert {
+  &-absolute {
+    position: fixed;
+    z-index: 1000;
+    color: $white;
+  }
+  &.top-right {
+    right: 20px;
+    top: 20px;
+  }
+  &.top-left {
+    left: 20px;
+    top: 20px;
+  }
+  &.bottom-right {
+    right: 20px;
+    bottom: 20px;
+  }
+  &.bottom-left {
+    left: 20px;
+    bottom: 20px;
+  }
+}

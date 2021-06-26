@@ -12,3 +12,7 @@ export const loadCourse = createAction(
   LOAD_COURSES,
   props<{ payload: ICourse[] }>()
 );
+export const getCourseDetail = createAction(
+  LOAD_COURSE_DETAIL,
+  props<{ payload: ICourse }>()
+);

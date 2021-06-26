@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/scss/global/variables";
 @import "~bootstrap/scss/bootstrap";
+@import "./assets/scss/global/mixins";
+@import "./assets/scss/global/placeholders";
 
 @import "./assets/scss/base/init";
 @import "./assets/scss/base/common";
@@ -14,7 +16,13 @@
 @import "./assets/scss/layout/navbar";
 @import "./assets/scss/layout/dropdown";
 
-@import "./assets/scss/components/hero";
+@import "./assets/scss/components/alert";
+@import "./assets/scss/components/avatar";
+@import "./assets/scss/components/form";
 @import "./assets/scss/components/section";
+@import "./assets/scss/components/hero";
 @import "./assets/scss/components/card";
 @import "./assets/scss/components/image";
+
+@import "./assets/scss/views/not-found";
+@import "./assets/scss/views/course";

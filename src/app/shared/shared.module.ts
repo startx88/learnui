@@ -22,6 +22,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { RouterModule } from '@angular/router';
 import { CourseItemComponent } from './components/course/course-item/course-item.component';
+import { TitleComponent } from './components/title/title.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { SanitizePipe } from './pipes/sanitize.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { CourseItemComponent } from './components/course/course-item/course-item
     LoaderComponent,
     LogoComponent,
     CourseItemComponent,
+    TitleComponent,
+    CapitalizePipe,
+    SanitizePipe,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -70,6 +76,8 @@ import { CourseItemComponent } from './components/course/course-item/course-item
     LoaderComponent,
     CourseItemComponent,
     AddClassDirective,
+    TitleComponent,
+    CapitalizePipe,
   ],
 })
 export class SharedModule {}

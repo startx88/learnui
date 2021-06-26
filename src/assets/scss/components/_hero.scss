@@ -1,6 +1,27 @@
 .hero {
+  padding-top: $navbar-height * 1.5;
+  &.detail {
+    position: relative;
+    background-color: $hero-bg;
+    padding-bottom: 60px;
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-bottom: 40px solid $body-bg;
+      border-right: 50vw solid transparent;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      border-bottom: 40px solid $body-bg;
+      border-left: 50vw solid transparent;
+    }
+  }
   &.bg {
-    padding-top: $navbar-height;
     background-image: url("../../images/hero.webp");
     min-height: 70vh;
     background-size: cover;
