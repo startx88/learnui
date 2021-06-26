@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ICategory } from 'src/app/models/category.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { AppState } from 'src/app/store';
+import { startLoading } from 'src/app/store/actions/category.action';
 import { getAllCategory } from 'src/app/store/selectors/category.selector';
 import { CategoryFormComponent } from './category-form/category-form.component';
 
@@ -14,16 +15,14 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 })
 export class CategoryComponent implements OnInit {
   @ViewChild(CategoryFormComponent) catForm: CategoryFormComponent;
-  cats$: Observable<ICategory[]>;
+  cats$: Observable<ICategory[]> = this.store.select(getAllCategory);
   constructor(
     private store: Store<AppState>,
     private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
-    this.categoryService.loadData().subscribe(() => {});
-
-    this.cats$ = this.store.select(getAllCategory);
+    this.store.dispatch(startLoading());
   }
 
   // reset form

@@ -15,6 +15,8 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CoursesComponent } from './views/courses/courses.component';
 import { DetailComponent } from './views/detail/detail.component';
+import { CategoryEffect } from './store/effects/category.effect';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { DetailComponent } from './views/detail/detail.component';
     BrowserModule,
     SharedModule,
     StoreModule.forRoot(rootReducer),
+    EffectsModule.forRoot([CategoryEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 50,
       logOnly: environment.production,
