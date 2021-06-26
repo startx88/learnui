@@ -25,6 +25,9 @@ import { CourseItemComponent } from './components/course/course-item/course-item
 import { TitleComponent } from './components/title/title.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { SanitizePipe } from './pipes/sanitize.pipe';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { UploadComponent } from './components/upload/upload.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -52,9 +55,11 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
     TitleComponent,
     CapitalizePipe,
     SanitizePipe,
+    UploadComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, CKEditorModule],
   exports: [
+    ReactiveFormsModule,
     AlertComponent,
     ModalComponent,
     ButtonComponent,
@@ -78,6 +83,8 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
     AddClassDirective,
     TitleComponent,
     CapitalizePipe,
+    UploadComponent,
+    FormGroupComponent,
   ],
 })
 export class SharedModule {}

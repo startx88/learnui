@@ -1,1 +1,2 @@
-<p>input works!</p>
+<input [type]="type" class="form-control {{color}}" [placeholder]="placeholder" [id]="name" [name]="name"
+  [ngClass]="validation" (change)="onChanged($event)" (input)="onInputChange($event)" />

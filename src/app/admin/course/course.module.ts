@@ -8,6 +8,7 @@ import { LessionCategoryComponent } from './lession-category/lession-category.co
 import { RouterModule, Routes } from '@angular/router';
 import { QuizComponent } from './quiz/quiz.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CourseFormComponent } from './common/course-form/course-form.component';
 
 const courseRoute: Routes = [
   {
@@ -31,6 +32,7 @@ const courseRoute: Routes = [
     LessionComponent,
     LessionCategoryComponent,
     QuizComponent,
+    CourseFormComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(courseRoute)],
 })

@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="addCourse()" class="needs-validation" novalidate>
+  <app-form-group label="Select category" *ngIf="(cats$ | async) as cats" [validation]="validClass(category)">
+    <select [compareWith]="compareFn" class="form-control gray" name="category" formControlName="category"
+      [validation]="validClass(category)">
+      <option value="" disabled>Choose a category</option>
+      <option *ngFor="let cat of cats" [ngValue]="cat">{{cat.title}}</option>
+    </select>
+  </app-form-group>
+
+  <app-form-group label="Course name" [validation]="validClass(title)">
+    <app-input placeholder="Enter title" formControlName="title" name="title" [validation]="validClass(title)">
+    </app-input>
+  </app-form-group>
+
+  <app-form-group label="Course logo">
+    <app-upload [selected]="selectedImage" name="course-logo" (select)="onUpload($event)"></app-upload>
+  </app-form-group>
+
+  <app-form-group label="Description">
+    <app-textarea [validation]="validClass(description)" name="description" formControlName="description">
+    </app-textarea>
+  </app-form-group>
+
+  <div class="form-group mb-3 text-center">
+    <button type="submit" class="btn btn-primary btn-sm">Add Course</button>
+  </div>
+</form>

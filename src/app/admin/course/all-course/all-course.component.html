@@ -1,8 +1,8 @@
 <app-title title="Courses" status="Welcome to all courses.">
-  <app-button color="primary" size="xs">Add course</app-button>
+  <app-button color="primary" size="xs" data-bs-toggle="modal" data-bs-target="#add-course">Add course</app-button>
 </app-title>
 
 
-<app-modal>
-
+<app-modal [id]="'add-course'" title="Add Course">
+  <app-course-form></app-course-form>
 </app-modal>

@@ -1,1 +1,6 @@
-<p>form-group works!</p>
+<div class="form-group mb-3" [ngClass]="validation">
+  <label class="form-label" *ngIf="label">{{label}}
+    <span class="xs text-danger" *ngIf="required">*</span>
+  </label>
+  <ng-content></ng-content>
+</div>

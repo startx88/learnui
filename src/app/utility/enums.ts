@@ -1,5 +1,6 @@
 enum Color {
   icon = 'icon',
+  gray = 'gray',
   white = 'white',
   transparent = 'transparent',
   default = 'default',
