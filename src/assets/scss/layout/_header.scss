@@ -1,0 +1,32 @@
+.navbar {
+  &-brand {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .nav-item {
+    margin-left: 20px;
+    position: relative;
+    .nav-link {
+      color: $text-color;
+      padding: 15px 10px;
+    }
+    &.active {
+      .nav-link {
+        color: $primary;
+      }
+    }
+  }
+
+  &-public {
+    //background-color: $navbar-white-bg;
+    //box-shadow: $navbar-shadow;
+  }
+
+  &-admin {
+  }
+}

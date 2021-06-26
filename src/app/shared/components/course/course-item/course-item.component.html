@@ -1,0 +1,14 @@
+<app-card color="bg-white" [appAddClass]="'card-course'" *ngIf="type==='horz'; else vert">
+  <div class="card-image ht-200" style="background-image: url({{course.image}})">
+    <a [routerLink]="['/course/', course.id]"></a>
+  </div>
+</app-card>
+<ng-template #vert>
+  <app-card color="bg-white text-start" [appAddClass]="'card-course'">
+    <div class="card-img ht-200" style="background-image: url({{course.image}})">
+      <a [routerLink]="['/course/', course.id]"></a>
+    </div>
+    <small class="text-primary">{{course.category.title}}</small>
+    <h4>{{course.title}}</h4>
+  </app-card>
+</ng-template>

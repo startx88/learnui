@@ -1,0 +1,54 @@
+.content {
+  margin-left: auto;
+  margin-right: auto;
+  &.xs {
+    max-width: 55%;
+  }
+
+  &.md {
+    max-width: 75%;
+  }
+}
+
+/**
+* a, p, sizes
+*/
+p,
+label {
+  &.light {
+    font-weight: 300;
+  }
+  &.line-ht {
+    line-height: 1.5em;
+  }
+  @each $k, $v in $paragraph {
+    &.#{$k} {
+      font-size: $v;
+    }
+  }
+}
+// font size generate xs, sm, md, lg, xl
+@each $k, $v in $paragraph {
+  .text-#{$k} {
+    font-size: $v;
+  }
+}
+
+@each $k, $v in $widths {
+  .mh-#{$k} {
+    min-height: $v;
+  }
+  .ht-#{$k} {
+    height: $v;
+  }
+
+  .w-#{$k} {
+    width: $v;
+  }
+  ._mw-#{$k} {
+    min-width: $v;
+  }
+  .mw-#{$k} {
+    max-width: $v;
+  }
+}

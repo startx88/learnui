@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/global/variables";
+@import "~bootstrap/scss/bootstrap";
+
+@import "./assets/scss/base/init";
+@import "./assets/scss/base/common";
+@import "./assets/scss/base/heading";
+@import "./assets/scss/base/button";
+
+@import "./assets/scss/layout/wrapper";
+@import "./assets/scss/layout/header";
+@import "./assets/scss/layout/footer";
+@import "./assets/scss/layout/sidebar";
+@import "./assets/scss/layout/navbar";
+@import "./assets/scss/layout/dropdown";
+
+@import "./assets/scss/components/hero";
+@import "./assets/scss/components/section";
+@import "./assets/scss/components/card";
+@import "./assets/scss/components/image";

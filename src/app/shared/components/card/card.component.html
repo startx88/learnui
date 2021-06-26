@@ -1,0 +1,7 @@
+<div class="card" [ngClass]="color">
+  <ng-content select=".card-img"></ng-content>
+  <div class="card-body">
+    <ng-content></ng-content>
+  </div>
+  <ng-content select="card-footer"></ng-content>
+</div>

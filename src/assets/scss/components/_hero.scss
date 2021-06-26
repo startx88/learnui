@@ -1,0 +1,29 @@
+.hero {
+  &.bg {
+    padding-top: $navbar-height;
+    background-image: url("../../images/hero.webp");
+    min-height: 70vh;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    border-bottom: 10px solid $primary;
+
+    h1 {
+      font-size: $base-size * 2.5;
+    }
+
+    &:before {
+      content: "";
+      background-image: linear-gradient(
+        180deg,
+        rgba($white, 1),
+        rgba($white, 0)
+      );
+      position: absolute;
+      width: $global-width;
+      top: 0;
+      height: 40%;
+    }
+  }
+}

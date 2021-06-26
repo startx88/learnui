@@ -1,0 +1,16 @@
+.btn-shadow {
+  box-shadow: 0 1px 2px $gray-800;
+}
+.btn {
+  font-size: $btn-text-size;
+  padding: $btn-default-padding;
+  &-primary {
+    color: $white;
+    @extend .btn-shadow;
+    &:hover {
+      background-color: darken($primary, 10%);
+      border-color: darken($primary, 10%);
+      color: white;
+    }
+  }
+}
