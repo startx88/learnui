@@ -123,6 +123,16 @@ $btn-lg-width: 150px !default;
 $btn-xl-width: 200px !default;
 $btn-rounded: 50px !default;
 
+$btn-sizes: (
+  xs: 60px,
+  sm: 100px,
+  md: 120px,
+  ml: 150px,
+  lg: 200px,
+  xl: 250px,
+  full: "100%",
+) !default;
+
 // form
 $input-height: 40px !default;
 $input-border-color: rgba($text-color, 0.5) !default;

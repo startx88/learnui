@@ -14,6 +14,11 @@ const adminRoutes: Routes = [
       { path: '', redirectTo: 'dashboard' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'pages', component: PageComponent },
+      {
+        path: 'course',
+        loadChildren: () =>
+          import('./course/course.module').then((m) => m.CourseModule),
+      },
     ],
   },
 ];

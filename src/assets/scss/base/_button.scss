@@ -13,4 +13,10 @@
       color: white;
     }
   }
+
+  @each $k, $v in $btn-sizes {
+    &-#{$k} {
+      min-width: $v;
+    }
+  }
 }
