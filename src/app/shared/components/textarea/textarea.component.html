@@ -1,2 +1,3 @@
-<ckeditor [editor]="Editor" [data]="data" [ngClass]="validation" [id]="name" [disabled]="disabled" [tagName]="tagName">
+<ckeditor #ckeditor [editor]="Editor" [data]="data" [ngClass]="validation" [id]="name" [disabled]="disabled"
+  [tagName]="tagName" debounce="500" (change)="onChanged($event)">
 </ckeditor>

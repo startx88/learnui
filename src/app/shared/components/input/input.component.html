@@ -1,2 +1,6 @@
-<input [type]="type" class="form-control {{color}}" [placeholder]="placeholder" [id]="name" [name]="name"
-  [ngClass]="validation" (change)="onChanged($event)" (input)="onInputChange($event)" />
+<ng-container [ngSwitch]="type">
+  <input *ngSwitchCase="'checkbox'" [type]="type" class="form-control {{color}}" [placeholder]="placeholder" [id]="name"
+    [name]="name" [ngClass]="validation" (change)="onChanged($event)" />
+  <input *ngSwitchDefault [type]="type" [value]="value" class="form-control {{color}}" [placeholder]="placeholder"
+    [id]="name" [name]="name" [ngClass]="validation" (input)="onInputChange($event)" />
+</ng-container>

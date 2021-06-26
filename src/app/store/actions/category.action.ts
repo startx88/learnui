@@ -1,44 +1,15 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { ICourse } from 'src/app/models/course.model';
-import {
-  startLoadingCourse,
-  loadCourse,
-  getCourseDetail,
-} from './course.action';
+import { createAction, props } from '@ngrx/store';
+import { ICategory } from 'src/app/models/category.model';
 
-export const COURSE_REDUCER_NAME = 'course';
-// cours state
-export interface CourseState {
-  loading: boolean;
-  courses: ICourse[];
-  course: ICourse;
-}
+// constants
+export const LOADING_START = '[CATEGORY] start loading';
+export const CATEGORY_FETCH_ALL = '[CATEGORY] get all category';
+export const CATEGORY_DELETE = '[CATEGORY] delete category';
+export const CATEGORY_UPDATE = '[CATEGORY] update category';
 
-// initial state
-const initialState: CourseState = {
-  loading: false,
-  courses: [],
-  course: null,
-};
-
-// create course reducer
-const _courseReducer = createReducer(
-  initialState,
-  on(startLoadingCourse, (state) => ({ ...state, loading: true })),
-  on(loadCourse, (state, { payload }) => ({
-    ...state,
-    loading: false,
-    courses: payload,
-  })),
-  on(
-    getCourseDetail,
-    (state, { payload }) => (
-      console.log(payload), { ...state, course: payload }
-    )
-  )
+// action
+export const startLoading = createAction(LOADING_START);
+export const fetchAllCategory = createAction(
+  CATEGORY_FETCH_ALL,
+  props<{ payload: ICategory[] }>()
 );
-
-// export reducer
-export function courseReducer(state: CourseState, action: Action) {
-  return _courseReducer(state, action);
-}

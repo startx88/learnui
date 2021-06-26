@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import { ChangeEvent, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-textarea',
@@ -11,19 +11,21 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   ],
 })
 export class TextareaComponent implements OnInit, ControlValueAccessor {
-  @Input() data: string;
+  @Input() data: string = '';
   @Input() name: string;
   @Input() validation: string;
   @Input() tagName: string;
   public Editor = ClassicEditor;
-
+  @ViewChild('ckeditor') ckEditor: CKEditorComponent;
   onChange: (value: any) => void;
   onBlur: (value: any) => void;
   disabled: boolean = false;
   constructor() {}
 
   writeValue(value: string): void {
-    this.data = value;
+    if (value !== null) {
+      this.data = value;
+    }
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;

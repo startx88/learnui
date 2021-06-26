@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ControlValueAccessor } from '@angular/forms';
 import { Color } from 'src/app/utility';
+type IValue = string | boolean;
 
 @Component({
   selector: 'app-input',
@@ -18,14 +19,16 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() validation: string;
   @Input() color: Color = Color.gray;
-
+  @Input() isCheckbox: boolean = false;
   checked: boolean = false;
-  value: string;
+  value: IValue;
   disabled: boolean;
-  onChange: (value: string) => void;
-  onBlur: (value: string) => void;
+  onChange: (value: IValue) => void;
+  onBlur: (value: IValue) => void;
+
   constructor() {}
-  writeValue(value: string): void {
+
+  writeValue(value: IValue): void {
     this.value = value;
   }
   registerOnChange(fn: any): void {
@@ -43,9 +46,15 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   // onchange
   onInputChange(event: Event) {
     const value = (<HTMLInputElement>event.target).value;
+    this.value = value;
     this.onChange(value);
     this.onBlur(value);
   }
 
-  onChanged(event: Event) {}
+  onChanged(event: Event) {
+    const target = <HTMLInputElement>event.target;
+    this.value = target.checked;
+    this.onChange(target.checked);
+    this.onBlur(target.checked);
+  }
 }

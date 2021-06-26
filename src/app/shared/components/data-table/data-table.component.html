@@ -1,0 +1,64 @@
+<div class="table-responsive">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="table-search">
+      <input type="text" (input)="onSearch($event.target.value)" name="search" placeholder="Search by keyword..."
+        class="form-control gray" />
+    </div>
+    <div class="table-range select">
+      <select class="form-control gray">
+        <option *ngFor="let item of tableRange" [value]="item">{{item}}</option>
+      </select>
+    </div>
+  </div>
+  <table class="table table-data m">
+    <thead>
+      <tr>
+        <ng-container *ngFor="let item of data[0] | keyvalue">
+          <th *ngIf="!hideColumns.includes(item.key)">{{item.key | capitalize}}</th>
+        </ng-container>
+        <th class="text-right" style="width:50px" *ngIf="setting">Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="filteredData.length>0;else nodata">
+      <tr *ngFor="let row of filteredData; let i=index; trackBy:trackById">
+        <ng-container *ngFor="let item of row | keyvalue">
+          <ng-container *ngIf="!hideColumns.includes(item.key)">
+            <ng-container *ngIf="item.key=='category'; else start">
+              <td>{{item.value.title}}</td>
+            </ng-container>
+            <ng-template #start>
+              <td *ngIf="item.key==='active'; else first">
+                <span [ngClass]="{active:item.value,'in-active':!item.value}"></span>
+              </td>
+            </ng-template>
+            <ng-template #first>
+              <ng-container *ngIf="item.key==='image' || item.key==='hero';else second">
+                <td><img [src]="item.value" [alt]="item.value" /></td>
+              </ng-container>
+              <ng-template #second>
+                <ng-container *ngIf="item.key==='insertAt'; else third">
+                  <td>{{item.value | date:short}}</td>
+                </ng-container>
+                <ng-template #third>
+                  <td [innerHTML]="item.value  | sanitize"></td>
+                </ng-template>
+              </ng-template>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+        <td>
+          <app-setting [item]="row" (clicked)="onHandler($event)"></app-setting>
+        </td>
+      </tr>
+    </tbody>
+    <ng-template #nodata>
+      <tbody>
+        <tr>
+          <td [attr.colspan]="colspan" class="no-record">
+            No record found <i class="fa fa-smile-o "></i>
+          </td>
+        </tr>
+      </tbody>
+    </ng-template>
+  </table>
+</div>

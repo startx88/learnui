@@ -1,1 +1,5 @@
-<p>panel works!</p>
+<div class="panel {{color}} mb-3">
+  <ng-content select="header"></ng-content>
+  <ng-content></ng-content>
+  <ng-content select="footer"></ng-content>
+</div>

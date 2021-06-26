@@ -1,1 +1,20 @@
-<p>category works!</p>
+<app-title title="Category" status="Welcome to all category.">
+  <app-button color="primary" size="xs" data-bs-toggle="modal" data-bs-target="#add-category">Add course</app-button>
+</app-title>
+
+<app-modal (close)="onCloseModal()" [id]="'add-category'" title="Add Category">
+  <app-category-form></app-category-form>
+</app-modal>
+
+<!-- Page -->
+<app-panel *ngIf="(cats$ | async) as cats" class="mt-4">
+  <header class="panel-title">
+    <h4 class="mb-0">Category list</h4>
+  </header>
+  <app-data-table *ngIf="cats.length>0; else nodata" [data]="cats" (handler)="onHandler($event)"></app-data-table>
+  <ng-template #nodata>
+    <div class="no-data text-center">
+      <img src="../../assets/images/no-data.png">
+    </div>
+  </ng-template>
+</app-panel>

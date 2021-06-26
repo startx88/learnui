@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="addCategory()" class="needs-validation" novalidate>
+  <app-form-group label="Course name" [validation]="validClass(title)">
+    <app-input placeholder="Enter category name" formControlName="title" name="title" [validation]="validClass(title)">
+    </app-input>
+  </app-form-group>
+
+  <app-form-group label="Description">
+    <app-textarea [validation]="validClass(description)" name="description" formControlName="description">
+    </app-textarea>
+  </app-form-group>
+
+  <div class="form-group mb-3 text-center">
+    <button type="submit" class="btn btn-primary btn-sm">Add category</button>
+  </div>
+</form>

@@ -28,6 +28,7 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { UploadComponent } from './components/upload/upload.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DataTableComponent } from './components/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CapitalizePipe,
     SanitizePipe,
     UploadComponent,
+    DataTableComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, CKEditorModule],
   exports: [
@@ -85,6 +87,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CapitalizePipe,
     UploadComponent,
     FormGroupComponent,
+    DataTableComponent,
   ],
 })
 export class SharedModule {}

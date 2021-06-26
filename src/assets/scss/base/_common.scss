@@ -52,3 +52,16 @@ label {
     max-width: $v;
   }
 }
+
+.design {
+  position: relative;
+  padding-left: 10px;
+  &:before {
+    content: "";
+    width: 3px;
+    height: 100%;
+    background-color: $primary;
+    position: absolute;
+    left: 0;
+  }
+}

@@ -1,10 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ICategory } from '../models/category.model';
-import { Color } from '../utility/enums/color.enum ';
+import { AppState } from '../store';
+import {
+  fetchAllCategory,
+  startLoading,
+} from '../store/actions/category.action';
+import { Color } from '../utility';
 import { errorHandler } from '../utility/error-handler';
 import { AlertService } from './alert.service';
 
@@ -16,15 +22,21 @@ export class CategoryService {
   dataChanged: Subject<ICategory[]> = new Subject();
   url = environment.apiUrl + '/category';
 
-  constructor(private http: HttpClient, private alertService: AlertService) {}
+  constructor(
+    private http: HttpClient,
+    private alertService: AlertService,
+    private store: Store<AppState>
+  ) {}
 
   // load categories
   loadData(): Observable<ICategory[]> {
+    this.store.dispatch(startLoading());
     return this.http.get<ICategory[]>(this.url).pipe(
       catchError((error) => errorHandler(error, this.alertService)),
       tap((response: ICategory[]) => {
         this._data = response;
         this.dataChanged.next(this._data.slice());
+        this.store.dispatch(fetchAllCategory({ payload: response }));
       })
     );
   }
