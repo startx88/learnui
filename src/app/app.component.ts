@@ -9,6 +9,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAlert } from './models/alert.model';
 import { AppState } from './store';
+import { setLoadingSpinner } from './store/actions/loader.action';
+import { LoadingState } from './store/reducers/loading.reducer';
+import { getLoading } from './store/selectors/loading.selector';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +21,11 @@ import { AppState } from './store';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'learnui';
-  loading = false;
+  loading$: Observable<boolean>;
   alert$: Observable<IAlert>;
   protected = ['admin', 'auth', 'not-found'];
   enable: boolean = false;
+
   constructor(private store: Store<AppState>, private router: Router) {}
 
   ngAfterViewInit() {
@@ -30,14 +34,15 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.loading$ = this.store.select(getLoading);
     this.alert$ = this.store.select('alert');
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        this.loading = true;
+        this.store.dispatch(setLoadingSpinner({ status: true }));
       }
       if (event instanceof NavigationEnd || event instanceof NavigationError) {
-        this.loading = false;
+        this.store.dispatch(setLoadingSpinner({ status: false }));
       }
 
       if (event instanceof NavigationStart || event instanceof NavigationEnd) {

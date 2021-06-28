@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAlert } from 'src/app/models/alert.model';
 import { AppState } from 'src/app/store';
-import { alertHide } from 'src/app/store/actions/alert.action';
+import { setAlertHide } from 'src/app/store/actions/alert.action';
 
 @Component({
   selector: 'app-alert',
@@ -19,6 +19,6 @@ export class AlertComponent implements OnInit {
   }
 
   hideAlert() {
-    this.store.dispatch(alertHide());
+    this.store.dispatch(setAlertHide());
   }
 }

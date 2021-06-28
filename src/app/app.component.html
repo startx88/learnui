@@ -1,4 +1,4 @@
-<app-loader *ngIf="loading"></app-loader>
+<app-loader *ngIf="(loading$ | async)"></app-loader>
 <ng-container *ngIf="(alert$ | async) as alert">
   <app-alert *ngIf="alert.visible"></app-alert>
 </ng-container>

@@ -36,7 +36,7 @@
                 <td><img [src]="item.value" [alt]="item.value" /></td>
               </ng-container>
               <ng-template #second>
-                <ng-container *ngIf="item.key==='insertAt'; else third">
+                <ng-container *ngIf="item.key==='createdAt'|| item.key==='updatedAt'; else third">
                   <td>{{item.value | date:short}}</td>
                 </ng-container>
                 <ng-template #third>
@@ -47,7 +47,17 @@
           </ng-container>
         </ng-container>
         <td>
-          <app-setting [item]="row" (clicked)="onHandler($event)"></app-setting>
+          <app-dropdown>
+            <li><a class="dropdown-item" href="javascript:void(0)" (click)="onHandler('active', row)"><i
+                  class="fa fa-eye me-2"></i>Active</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" (click)="onHandler('inactive',row)"><i
+                  class="fa fa-eye-slash me-2"></i>In Active</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" (click)="onHandler('edit',row)"><i
+                  class="fa fa-pencil me-2"></i>Edit</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" (click)="onHandler('delete',row)"><i
+                  class="fa fa-trash me-2"></i>
+                Delete</a></li>
+          </app-dropdown>
         </td>
       </tr>
     </tbody>

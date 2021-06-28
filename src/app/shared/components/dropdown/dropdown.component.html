@@ -1,0 +1,15 @@
+<div class="dropdown">
+  <button *ngIf="label; else icon" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+    data-bs-toggle="dropdown" aria-expanded="false">
+    label
+  </button>
+  <ng-template #icon>
+    <button class="btn btn-icon" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa fa-ellipsis-v"></i>
+    </button>
+  </ng-template>
+  <ul class="dropdown-menu {{direction}}" aria-labelledby="dropdownMenuButton1">
+    <li class="dropdown-header text-center xs">More Action</li>
+    <ng-content></ng-content>
+  </ul>
+</div>

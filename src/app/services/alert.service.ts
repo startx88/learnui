@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { IAlert } from '../models/alert.model';
 import { AppState } from '../store';
-import { alertHide, alertShow } from '../store/actions/alert.action';
+import { setAlertHide, setAlertShow } from '../store/actions/alert.action';
 import { Color } from '../utility';
 import { Size } from '../utility';
 
@@ -16,14 +16,14 @@ export class AlertService {
 
   // alert visible
   alertShow(alert: IAlert, timer: number = 3000) {
-    this.store.dispatch(alertShow(alert));
+    this.store.dispatch(setAlertShow(alert));
     this.clearTimer = setTimeout(() => {
-      this.store.dispatch(alertHide());
+      this.store.dispatch(setAlertHide());
     }, timer);
   }
 
   alertHide() {
-    this.store.dispatch(alertHide());
+    this.store.dispatch(setAlertHide());
     if (this.clearTimer) clearTimeout(this.clearTimer);
     this.clearTimer = null;
   }

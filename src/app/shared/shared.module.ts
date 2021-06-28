@@ -29,6 +29,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { UploadComponent } from './components/upload/upload.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     SanitizePipe,
     UploadComponent,
     DataTableComponent,
+    DropdownComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule, CKEditorModule],
   exports: [
@@ -88,6 +90,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     UploadComponent,
     FormGroupComponent,
     DataTableComponent,
+    DropdownComponent,
   ],
 })
 export class SharedModule {}

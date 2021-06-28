@@ -1,11 +1,12 @@
-import { OnDestroy, ViewChild } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { TextareaComponent } from 'src/app/shared/components/textarea/textarea.component';
 
 @Component({
@@ -14,26 +15,16 @@ import { TextareaComponent } from 'src/app/shared/components/textarea/textarea.c
   styleUrls: ['./category-form.component.scss'],
 })
 export class CategoryFormComponent implements OnInit, OnDestroy {
-  form: FormGroup;
+  @Input() form: FormGroup;
+  @Output() sumbmit = new EventEmitter();
   @ViewChild(TextareaComponent) editor: TextareaComponent;
-  constructor(private _fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.form = this._fb.group({
-      title: ['', [Validators.required]],
-      description: [''],
-    });
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
   addCategory() {
-    this.form.get('title').markAsTouched();
-    if (this.form.invalid) return;
-    console.log(this.form.value);
-  }
-
-  resetForm() {
-    this.form.reset();
-    this.editor.ckEditor.editorInstance.setData('');
+    this.sumbmit.emit();
   }
 
   // validation

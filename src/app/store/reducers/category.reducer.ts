@@ -1,6 +1,11 @@
+import { state } from '@angular/animations';
 import { Action, createReducer, on } from '@ngrx/store';
 import { ICategory } from 'src/app/models/category.model';
-import { fetchAllCategory, startLoading } from '../actions/category.action';
+import {
+  categoryAddSuccess,
+  fetchAllCategory,
+  startLoading,
+} from '../actions/category.action';
 
 export const CATEGORY_REDUCER_NAME = 'category';
 // cat state
@@ -18,17 +23,15 @@ const initialState = {
 const _categoryReducer = createReducer(
   initialState,
   on(startLoading, (state) => ({ ...state, loading: true })),
-  on(
-    fetchAllCategory,
-    (state, { payload }) => (
-      console.log('p', payload),
-      {
-        ...state,
-        loading: false,
-        categories: payload,
-      }
-    )
-  )
+  on(fetchAllCategory, (state, { payload }) => ({
+    ...state,
+    loading: false,
+    categories: payload,
+  })),
+  on(categoryAddSuccess, (state, { payload }) => ({
+    ...state,
+    categories: [...state.categories, payload],
+  }))
 );
 
 // export reducer

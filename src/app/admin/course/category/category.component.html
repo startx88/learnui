@@ -3,7 +3,7 @@
 </app-title>
 
 <app-modal (close)="onCloseModal()" [id]="'add-category'" title="Add Category">
-  <app-category-form></app-category-form>
+  <app-category-form [form]="form" (sumbmit)="addCategory()"></app-category-form>
 </app-modal>
 
 <!-- Page -->

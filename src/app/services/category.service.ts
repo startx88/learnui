@@ -50,18 +50,10 @@ export class CategoryService {
   // add / update category
 
   addItem(category: ICategory, id?: string): Observable<ICategory> {
-    const formdata = new FormData();
-    formdata.append('title', category.title);
-    formdata.append('image', category.image);
-    formdata.append('description', category.description);
-    formdata.append('offer', category.offer.toString());
     if (id) {
-      return this.http.post<ICategory>(this.url + '/' + id, formdata).pipe(
+      return this.http.post<ICategory>(this.url + '/' + id, category).pipe(
         catchError((error) => errorHandler(error, this.alertService)),
         tap((response: ICategory) => {
-          const index = this._data.findIndex((data) => data.id === id);
-          this._data[index] = response;
-          this.dataChanged.next(this._data.slice());
           this.alertService.alertShow({
             message: response.title + 'updated successfully',
             color: Color.success,
@@ -69,11 +61,9 @@ export class CategoryService {
         })
       );
     } else {
-      return this.http.post<ICategory>(this.url, formdata).pipe(
+      return this.http.post<ICategory>(this.url, category).pipe(
         catchError((error) => errorHandler(error, this.alertService)),
         tap((response: ICategory) => {
-          this._data.push(response);
-          this.dataChanged.next(this._data.slice());
           this.alertService.alertShow({
             message: response.title + 'added successfully',
             color: Color.success,

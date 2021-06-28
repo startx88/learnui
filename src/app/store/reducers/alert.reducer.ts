@@ -1,7 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { IAlert } from 'src/app/models/alert.model';
 import { Color, Direction, Size } from 'src/app/utility';
-import { alertHide, alertShow } from '../actions/alert.action';
+import { setAlertShow, setAlertHide } from '../actions/alert.action';
 
 export const ALERT_REDUCER_NAME = 'alert';
 
@@ -17,7 +17,7 @@ const initialState: IAlert = {
 // create reducer
 const _alertReducer = createReducer(
   initialState,
-  on(alertShow, (state, payload) => ({
+  on(setAlertShow, (state, payload) => ({
     ...state,
     visible: true,
     message: payload.message,
@@ -25,7 +25,7 @@ const _alertReducer = createReducer(
     color: payload.color ?? state.color,
     size: payload.size ?? state.size,
   })),
-  on(alertHide, (state) => ({
+  on(setAlertHide, (state) => ({
     ...state,
     visible: false,
     message: '',

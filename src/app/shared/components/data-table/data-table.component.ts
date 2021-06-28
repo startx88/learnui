@@ -45,7 +45,7 @@ export class DataTableComponent implements OnInit {
     return row.id;
   }
 
-  onHandler(event: { status: string; data: any }) {
-    this.handler.emit(event);
+  onHandler(status: string, data: any) {
+    this.handler.emit({ status, data });
   }
 }
