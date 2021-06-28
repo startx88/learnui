@@ -7,14 +7,10 @@
 </app-modal>
 
 <!-- Page -->
-<app-panel *ngIf="(cats$ | async) as cats" class="mt-4">
+{{categories | json}}
+<app-panel class="mt-4" *ngIf="(cats$ | async) as data">
   <header class="panel-title">
     <h4 class="mb-0">Category list</h4>
   </header>
-  <app-data-table *ngIf="cats.length>0; else nodata" [data]="cats" (handler)="onHandler($event)"></app-data-table>
-  <ng-template #nodata>
-    <div class="no-data text-center">
-      <img src="../../assets/images/no-data.png">
-    </div>
-  </ng-template>
+  <app-data-table [data]="categories" (handler)="onHandler($event)"></app-data-table>
 </app-panel>

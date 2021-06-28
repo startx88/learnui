@@ -3,6 +3,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { ICategory } from 'src/app/models/category.model';
 import {
   categoryAddSuccess,
+  categoryDeleteSuccess,
   fetchAllCategory,
   startLoading,
 } from '../actions/category.action';
@@ -31,6 +32,10 @@ const _categoryReducer = createReducer(
   on(categoryAddSuccess, (state, { payload }) => ({
     ...state,
     categories: [...state.categories, payload],
+  })),
+  on(categoryDeleteSuccess, (state, { id }) => ({
+    ...state,
+    categories: state.categories.filter((item) => item.id !== id),
   }))
 );
 

@@ -9,9 +9,11 @@ import { AppState } from 'src/app/store';
 import { setLoadingSpinner } from 'src/app/store/actions';
 import {
   categoryAddStart,
+  categoryDeleteStart,
   startLoading,
 } from 'src/app/store/actions/category.action';
 import { getAllCategory } from 'src/app/store/selectors/category.selector';
+import { Status } from 'src/app/utility';
 
 @Component({
   selector: 'app-category',
@@ -22,12 +24,13 @@ export class CategoryComponent implements OnInit {
   form: FormGroup;
   @ViewChild(ModalComponent) modal: ModalComponent;
   cats$: Observable<ICategory[]> = this.store.select(getAllCategory);
-
+  categories: ICategory[];
   constructor(private store: Store<AppState>, private _fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.store.dispatch(startLoading());
 
+    this.store.select(getAllCategory).subscribe((d) => (this.categories = d));
     // form
     this.form = this._fb.group({
       title: ['', [Validators.required]],
@@ -45,13 +48,24 @@ export class CategoryComponent implements OnInit {
   addCategory() {
     this.form.get('title').markAsTouched();
     if (this.form.invalid) return;
-    console.log('hello', this.form.value);
     this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(categoryAddStart(this.form.value));
     this.modal.hide();
   }
 
+  // PERFORM CRUD OPERATION
   onHandler(event) {
-    console.log(event);
+    const { status, data } = event;
+    switch (status) {
+      case Status.EDIT:
+        break;
+      case Status.ACTIVE:
+        break;
+      case Status.INACTIVE:
+        break;
+      case Status.DELETED:
+        this.store.dispatch(categoryDeleteStart({ id: data.id }));
+        break;
+    }
   }
 }

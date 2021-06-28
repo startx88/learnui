@@ -77,18 +77,7 @@ export class CategoryService {
   removeItem(id: string): Observable<ICategory> {
     const confirm = window.confirm('Are you sure you want to delete');
     if (!confirm) return new Observable();
-    return this.http.delete<ICategory>(this.url + '/' + id).pipe(
-      catchError((error) => errorHandler(error, this.alertService)),
-      tap((response: ICategory) => {
-        const index = this._data.findIndex((data) => data.id === id);
-        this._data.splice(index, 1);
-        this.dataChanged.next(this._data.slice());
-        this.alertService.alertShow({
-          message: 'item deleted successfully',
-          color: Color.success,
-        });
-      })
-    );
+    return this.http.delete<ICategory>(this.url + '/' + id);
   }
 
   // active / in-active category

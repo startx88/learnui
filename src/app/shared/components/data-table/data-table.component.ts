@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { TABLE_RANGE } from 'src/app/utility';
 
 @Component({
@@ -6,8 +16,8 @@ import { TABLE_RANGE } from 'src/app/utility';
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss'],
 })
-export class DataTableComponent implements OnInit {
-  @Input() data: any = [];
+export class DataTableComponent implements OnInit, AfterViewChecked {
+  @Input() data: any;
   @Input() heading: string[] = [];
   @Input() hideColumns: string[] = ['id'];
   @Input() limit: number = 10;
@@ -20,12 +30,23 @@ export class DataTableComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.filteredData = this.data;
     this.tableRange = TABLE_RANGE;
-
+    this.filteredData = this.data;
     // colspan
     this.colspan =
       this.data.length > 0 ? Object.keys(this.data[0]).length + 1 : 0;
+
+    console.log(this.data, this.filteredData);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // this.filteredData = this.data = changes.currentValue;
+  }
+
+  ngAfterViewChecked() {
+    if (this.data) {
+      this.filteredData = this.data;
+    }
   }
 
   onSearch(value: string) {
